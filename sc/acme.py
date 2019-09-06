@@ -4,6 +4,13 @@ class Product:
 
     def __init__(self, name=None, price=10, weight=20, flammability=0.5,
                  identifier=randint(1000000, 9999999)):
+        '''
+        name: str
+        price: int
+        weight: int
+        flammability: float
+        identifier: int, randomly generated
+        '''
         self.name = name
         self.price = price
         self.weight = weight
@@ -35,7 +42,9 @@ class Product:
             print("...boom!")
 
 class BoxingGlove(Product):
-
+    '''uses mostly similar defaults as Products with some modifications
+    for method explode()
+    '''
     def __init__(self, name=None, price=10, weight=10, flammability=0.5,
                  identifier=randint(1000000, 9999999)):
         self.name = name
@@ -50,7 +59,8 @@ class BoxingGlove(Product):
         print("...it's a glove") 
     
     def punch(self):
-
+        '''evaluates weight of a punch for BoxingGlove
+        '''
         if self.weight < 5:
             print('That tickles')
         if self.weight > 15:

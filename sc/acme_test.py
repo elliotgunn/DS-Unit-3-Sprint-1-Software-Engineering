@@ -16,12 +16,18 @@ class AcmeProductTests(unittest.TestCase):
         self.assertEqual(prod.weight, 20)
 
     def test_methods(self):
+        '''Test custom product with changes to defaults
+        '''
         self.custom_product = Product('Test Product', price=20, weight=40, flammability=0.5)
         self.assertEqual(self.custom_product.stealability(), 'Not so stealable...')
         self.assertEqual(self.custom_product.explode(), "...it's a glove.")
 
 class AcmeReportTests(unittest.TestCase):
-
+    '''Two tests:
+       test_default_num_products() checks if product list received is 30
+       test_legal_names() checks if names generated are valid from 
+       ADJECTIVE and NOUN lists
+    '''
     def test_default_num_products(self):
         self.assertEqual(self.len(generate_products()), 30)
 
