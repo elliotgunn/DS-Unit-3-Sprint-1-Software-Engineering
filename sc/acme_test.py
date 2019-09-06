@@ -29,14 +29,15 @@ class AcmeReportTests(unittest.TestCase):
        ADJECTIVE and NOUN lists
     '''
     def test_default_num_products(self):
-        self.assertEqual(self.len(generate_products()), 30)
+        self.assertEqual(len(generate_products()), 30)
 
     def test_legal_names(self):
-        default_names = self.generate_products()
-        possible_names = self.generate_products()
-        for name in default_names:  
-            self.assertIn(name, possible_names)
-
+        products = generate_products()
+        for product in products:
+            first = product.name.split()[0]
+            last = product.name.split()[1] 
+            self.assertIn(first, ADJECTIVES)
+            self.assertIn(last, NOUNS)
 
 if __name__ == '__main__':
     unittest.main()

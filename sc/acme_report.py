@@ -12,8 +12,11 @@ def generate_products(num_products=30):
 
     for _ in list(range(num_products)):
         # get product names by sampling ADJECTIVES and NOUNS
-        product = Product(''.join(sample(ADJECTIVES, k=1) + sample(NOUNS, k=1)))
+        product = Product(sample(ADJECTIVES, k=1)[0] + ' ' + sample(NOUNS, k=1)[0],
+                        price=randint(5, 100), weight=(randint(5, 100)), flammability=(uniform(0.0,2.5)))
+        
         products.append(product)
+    
     return products
 
 
@@ -30,9 +33,9 @@ def inventory_report(products):
     for product in products:
 
         # record price, weight, flammability of each product
-        prices.append(randint(5, 100))
-        weights.append(randint(5, 100))
-        flammability.append(uniform(0.0,2.5))
+        prices.append(product.price)
+        weights.append(product.weight)
+        flammability.append(product.flammability)
 
     # calculates averages
     price_average = sum(prices) / len(prices)
@@ -40,13 +43,17 @@ def inventory_report(products):
     flammability_average = sum(flammability) / len(flammability)
 
     # unique product names
-    # unique_names = 
+    names = []
+    for product in products:
+        names.append(product.name)
 
-    # Finally print the report
+    unique_names = len(list(set(names)))
+
     print('ACME CORPORATION OFFICIAL INVENTORY REPORT')
-    print(f'Average price: {price_average: .1f}')
-    print(f'Average weight: {weight_average: .1f}')
-    print(f'Average flammability: {flammability_average: .1f}')
+    print('Unique product names', unique_names)
+    print('Average price', price_average)
+    print('Average weight', weight_average)
+    print('Average flammability', flammability_average)
 
 if __name__ == '__main__':
     inventory_report(generate_products())
